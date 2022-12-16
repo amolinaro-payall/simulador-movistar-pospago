@@ -13,33 +13,39 @@ app.get("/gecko/api/payall/term/:username/hash/:hash", (request, response) =>
     
     response.status(200).send(
         {
-            "resultados": 2,
-            "items":
-            [
+            "resultados": 3,
+            "items": [
                 {
-                    "id": "13717",
-                    "username": "adrian2005",
-                    "email": "adri*****26@gmail.com",
-                    "phone": "+580******9804",
-                    "document": "25000000"
+                    "id": "6986",
+                    "username": "oclean66",
+                    "email": "ocle*****66@gmail.com",
+                    "phone": "+58-******2475",
+                    "document": "18989861"
                 },
                 {
-                    "id": "28124",
-                    "username": "manuel23",
-                    "email": "manu*****ma@gmail.com",
-                    "phone": "+580******9095",
-                    "document": "25000000"
+                    "id": "37329",
+                    "username": "oclean66aaa",
+                    "email": "asda*****sd@asd.com",
+                    "phone": "+132******2586",
+                    "document": null
+                },
+                {
+                    "id": "37332",
+                    "username": "oclean66awss",
+                    "email": "asda*****sd@asrd.com",
+                    "phone": "+573******2586",
+                    "document": null
                 }
             ],
-                "term": "04247539"
-        }
+            "term": "oclean66"
+        }        
     )
 })
 app.post("/gecko/api/payall/payin/:user/hash/:token", (request, response) =>
 {
-    console.log("--------Peticion consulta--------")
+    console.log("--------Peticion pago--------")
     console.log(request.body)
-    console.log("--------Fin peticion consulta--------")
+    console.log("--------Fin peticion pago--------")
     response.status(200).send(
         {
             "method": "payin",
