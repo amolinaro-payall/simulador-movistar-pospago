@@ -41,12 +41,12 @@ app.get("/gecko/api/payall/term/:username/hash/:hash", (request, response) =>
         }        
     )
 })
-app.post("/gecko/api/payall/payin/:user/hash/:token", (request, response) =>
+app.post("/gecko/api/payall/payin/:user/hash/:token", (request2, response2) =>
 {
     console.log("--------Peticion pago--------")
-    console.log(request.body)
+    console.log(request2.body)
     console.log("--------Fin peticion pago--------")
-    response.status(200).send(
+    response2.status(200).send(
         {
             "method": "payin",
             "transaction_id": "0X1234",
