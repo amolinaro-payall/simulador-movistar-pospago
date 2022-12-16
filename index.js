@@ -1,4 +1,5 @@
 import Express from "express";
+import querystring from 'querystring';
 const app = Express();
 app.use(Express.json());
 const timeout = 30000;
@@ -8,9 +9,9 @@ let n = 0;
 app.get("/gecko/api/payall/term/:username/hash/:hash", (request, response) =>
 {
     console.log("--------Peticion consulta--------")
-    console.log(request.body)
+    console.log(request.query)
     console.log("--------Fin peticion consulta--------" )
-    
+
     response.status(200).send(
         {
             "resultados": 3,
@@ -41,12 +42,26 @@ app.get("/gecko/api/payall/term/:username/hash/:hash", (request, response) =>
         }        
     )
 })
-app.post("/gecko/api/payall/payin/:user/hash/:token", (request2, response2) =>
+
+app.post("/gecko/api/payall/payin/:user/hash/:token", (request, response) =>
 {
     console.log("--------Peticion pago--------")
-    console.log(request2.body)
+    console.log(request.body.monto)
     console.log("--------Fin peticion pago--------")
-    response2.status(200).send(
+
+    if (request.method === 'POST') {
+        var body = '';
+        request.on('data', function (data) {
+            body += data;
+            if (body.length > 1e6)
+                request.connection.destroy();
+        });
+        request.on('end', function () {
+            var post = querystring.parse(body);
+            console.log(post);
+        });
+    }
+    response.status(200).send(
         {
             "method": "payin",
             "transaction_id": "0X1234",
