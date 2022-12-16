@@ -1,0 +1,20 @@
+{
+    "merchant_identify":
+    {
+        "integratorId":"1", "merchantId":"200294", "terminalId":"1"
+    },
+    "client_identify":
+    {
+        "ipaddress":"172.0.0.1", "browser_agent":"Firefox", "mobile":
+        {
+            "manufacturer":"alcatel", "model":"A1", "os_version":"Linux", "location":
+            {
+                "lat":-65.25641, "lng":10.66666
+            }
+        }
+    }
+    ,"transaction_c2p":
+    {
+        "trx_type":"compra", "payment_method":"c2p", "destination_id":"V28322226", "invoice_number":"1659037840168", "currency":"VES", "amount":35.0, "destination_bank_id":"0105", "destination_mobile_number":"584143046902", "payment_reference":"1234567891234", "origin_mobile_number":"584242591178", "twofactor_auth":"00001111"
+    }
+}

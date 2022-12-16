@@ -1,0 +1,12 @@
+Get http://localhost:3000/productos/1
+
+#####
+
+POST http://localhost:3000/add
+Content-Type: application/json
+
+{
+    "title":"hola", 
+    "id":1
+}
+
