@@ -25,7 +25,7 @@ app.post("/service_pay/consultation", (request, response) =>
     response.status(200).send(
         {
             "name": "Prueba",
-            "balance": 100.00
+            "balance": 200.00
         }
     )
 })
