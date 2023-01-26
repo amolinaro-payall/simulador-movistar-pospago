@@ -1,83 +1,53 @@
 import Express from "express";
-import querystring from 'querystring';
 const app = Express();
 app.use(Express.json());
-const timeout = 30000;
-const puerto = 8070;
-let n = 0;
+const timeout = 20000;
+const puerto = 8502;
 
-app.get("/gecko/api/payall/term/:username/hash/:hash", (request, response) =>
+app.post("/oauth/authorize", (request, response) =>
 {
     console.log("--------Peticion consulta--------")
-    console.log(request.query)
+    console.log(request)
     console.log("--------Fin peticion consulta--------" )
-
     response.status(200).send(
         {
-            "resultados": 3,
-            "items": [
-                {
-                    "id": "6986",
-                    "username": "oclean66",
-                    "email": "ocle*****66@gmail.com",
-                    "phone": "+58-******2475",
-                    "document": "18989861"
-                },
-                {
-                    "id": "37329",
-                    "username": "oclean66aaa",
-                    "email": "asda*****sd@asd.com",
-                    "phone": "+132******2586",
-                    "document": null
-                },
-                {
-                    "id": "37332",
-                    "username": "oclean66awss",
-                    "email": "asda*****sd@asrd.com",
-                    "phone": "+573******2586",
-                    "document": null
-                }
-            ],
-            "term": "oclean66"
+            "access_token": "a5c16650-eb14-11ea-8344-fd5fa8aexxxx",
+            "expires_in": 1799,
+            "token_type": "BEARER"
         }        
     )
 })
-
-app.post("/gecko/api/payall/payin/:user/hash/:token", (request, response) =>
+app.post("/service_pay/consultation", (request, response) =>
 {
     console.log("--------Peticion pago--------")
-    console.log(request.body.monto)
+    console.log(request)
     console.log("--------Fin peticion pago--------")
-
-    if (request.method === 'POST') {
-        var body = '';
-        request.on('data', function (data) {
-            body += data;
-            if (body.length > 1e6)
-                request.connection.destroy();
-        });
-        request.on('end', function () {
-            var post = querystring.parse(body);
-            console.log(post);
-        });
-    }
     response.status(200).send(
         {
-            "method": "payin",
-            "transaction_id": "0X1234",
-            "user_id": "3536",
-            "amount": "10",
-            "currency": "USD",
-            "notas": "Gracias",
-            "date": "2022-07-20 23:36",
-            "payin": "3536",
-            "hash": "eb6c9fa9ca021704c3ccc27abc42346a",
-            "data": "Se ha procesado con Exito",
-            "info": "Usuario: mostasa Saldo: $1,149.93",
-            "reference": "350522",
-            "status": "200"
+            "name": "Prueba",
+            "balance": 300.00
         }
     )
 })
-
+app.post("/service_pay/payment", (request, response) =>
+{
+    console.log("--------Peticion pago--------")
+    console.log(request)
+    console.log("--------Fin peticion pago--------")
+    response.status(200).send(
+        {
+            "int_date": 20225,
+            "id": "05f0c2c0-d54f-11ec-8efd-8b6aae6c69aa",
+            "sequence": 1724,
+            "amount": 1,
+            "service": "MOVISTAR_POSTPAID",
+            "account_number": "167747625",
+            "operation": "PAYMENT",
+            "service_client_name":"",
+            "approved_number": "0000000000",
+            "created_at" : "2022-05-18T19:33:12.044905486Z",    
+            "status": "SUCCESS"
+        }
+    )
+})
 app.listen(puerto, () => console.log("Escuchando por el puerto "+ puerto))
